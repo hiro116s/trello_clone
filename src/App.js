@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -42,8 +42,8 @@ function BoardList(props) {
   return(
     <div>
       <ul className="BoardList">
-        {props.boardList.map((board) => 
-          <li>{board}</li>)
+        {props.boardList.map((board, index) =>
+          <li key={index}>{board}</li>)
         }
       </ul>
     </div>
@@ -51,8 +51,12 @@ function BoardList(props) {
 }
 
 function App() {
-  const [boardList, setBoardList] = useState([]);
+  const BOARD_DATA_STORAGE_KEY = "board_data";
+  const [boardList, setBoardList] = useState(JSON.parse(localStorage.getItem(BOARD_DATA_STORAGE_KEY)) || []);
 
+  useEffect(() => {
+    localStorage.setItem(BOARD_DATA_STORAGE_KEY, JSON.stringify(boardList));
+  });
   return (
     <div className="App">
       <header className="App-header">
