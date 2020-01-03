@@ -68,7 +68,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <Link to="/" class="Header-link">
+          <img src={logo} className="App-logo" alt="logo" />
+        </Link>
       </header>
       <Switch>
         <Route path="/b/:id">
