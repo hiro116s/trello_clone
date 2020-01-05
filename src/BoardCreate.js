@@ -11,10 +11,7 @@ function BoardCreate(props) {
     }
 
     function handleSubmit(event) {
-      props.onBoardAdded({
-        "id":counter,
-        "name":boardName
-      });
+      props.onBoardAdded(createBoard(counter, boardName));
       setCounter(counter + 1);
       clearState();
       event.preventDefault();
@@ -39,6 +36,13 @@ function BoardCreate(props) {
         </div>
       );
     }
+}
+
+export function createBoard(id, name) {
+    return {
+        "id": id,
+        "name": name
+    };
 }
 
 export default BoardCreate;

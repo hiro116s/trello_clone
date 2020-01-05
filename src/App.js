@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Link to="/" class="Header-link">
+        <Link to="/" className="Header-link">
           <img src={logo} className="App-logo" alt="logo" />
         </Link>
       </header>
