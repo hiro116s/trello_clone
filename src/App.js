@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Switch, Route, Link } from 'react-router-dom';
-import BoardCreate from './BoardCreate';
-import BoardList from './BoardList';
+import BoardCreate from './home/BoardCreate';
+import BoardList from './home/BoardList';
+import Home from './home/Home';
 
 function App() {
   const BOARD_DATA_STORAGE_KEY = "board_data";
@@ -24,11 +25,10 @@ function App() {
           Hello
         </Route>
         <Route path="/">
-          <BoardCreate
+          <Home
+            boardList={boardList}
             onBoardAdded={newBoard => setBoardList([...boardList, newBoard])}
-            currentCounter={boardList.map(b => b.id).reduce((id1, id2) => Math.max(id1, id2) + 1, 0)}
           />
-          <BoardList boardList={boardList}/>
         </Route>
       </Switch>
     </div>

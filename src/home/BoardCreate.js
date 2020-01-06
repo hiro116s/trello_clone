@@ -23,7 +23,7 @@ function BoardCreate(props) {
           <form onSubmit={handleSubmit}>
             <label>
               Name:
-              <input type="text" value={boardName} onChange={(e) => setBoardName(e.target.value)}/>
+              <input type="text" name='board_name' value={boardName} onChange={(e) => setBoardName(e.target.value)}/>
             </label>
             <input type="submit" value="Submit"></input>
           </form>
