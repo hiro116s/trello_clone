@@ -6,7 +6,7 @@ function CreateNewList(props) {
     const [counter, setCounter] = useState(0);
 
     function handleSubmit(event) {
-        props.setLists(createList(counter, listName));
+        props.setLists(createList(counter, listName, []));
         setCounter(counter + 1);
         setIsFocused(false);
         event.preventDefault();
@@ -33,11 +33,11 @@ function CreateNewList(props) {
     }
 }
 
-export function createList(id, name) {
+export function createList(id, name, cards) {
     return {
         "id": id,
         "name": name,
-        "cards": []
+        "cards": cards
     };
 }
 export default CreateNewList;
