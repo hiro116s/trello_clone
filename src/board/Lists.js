@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cards from './Cards';
+import CreateNewCard from './CreateNewCard';
 
 function Lists(props) {
+    const [cards, setCards] = useState([]);
+
     return (
         <div>
             <ul>
@@ -9,7 +12,8 @@ function Lists(props) {
                     <li key={index}>
                         <div>
                             {list.name}
-                            <Cards cards={['a', 'b']} />
+                            <CreateNewCard addNewCard={(newCard) => setCards([...cards, newCard])} />
+                            <Cards cards={cards} />
                         </div>
                     </li>
                 )}

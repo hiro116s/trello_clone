@@ -6,7 +6,7 @@ function Cards(props) {
             <ul>
                 {props.cards.map((card, index) =>
                     <li key={index}>
-                        abc
+                        {card}
                     </li>
                 )}
             </ul>
