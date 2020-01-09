@@ -17,25 +17,22 @@ function BoardCreate(props) {
     event.preventDefault();
   }
 
-  if (isFocused) {
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-              <input type="text" name='board_name' value={boardName} onChange={(e) => setBoardName(e.target.value)} />
-          </label>
-          <input type="submit" value="Submit"></input>
-        </form>
-      </div>
-    );
-  } else {
-    return (
-      <div onClick={() => setIsFocused(true)}>
+  return (
+    <div className="CreateBoard">
+      <div className="CreateBoard-button" onClick={() => setIsFocused(!isFocused)}>
         Create board
-        </div>
-    );
-  }
+      </div>
+      {isFocused && <form onSubmit={handleSubmit} onReset={() => setIsFocused(!isFocused)} className="CreateBoard-form">
+        <label>
+          What shall we call the board? <br />
+          <input type="text" className='CreateBoard-input' name='board_name' value={boardName} onChange={(e) => setBoardName(e.target.value)} />
+        </label>
+        <br />
+        <input type="reset" value="Cancel"></input>
+        <input type="submit" value="Submit"></input>
+      </form>}
+    </div>
+  );
 }
 
 export function createBoard(id, name) {
