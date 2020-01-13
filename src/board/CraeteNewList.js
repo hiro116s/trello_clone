@@ -26,9 +26,9 @@ function CreateNewList(props) {
             </div>}
             {isFocused && <form className='Board-CreateLists-form' onSubmit={handleSubmit}>
                 <input type="text" name='list_name' value={listName} autoFocus onChange={(e) => setListName(e.target.value)} />
-                <p className='Board-CreateLists-error' aria-live='polite'>
-                    {isInvalidInput && 'give me a name!'}
-                </p>
+                {isInvalidInput && <p className='Board-CreateLists-error' aria-live='polite'>
+                    give me a name!
+                </p>}
             </form>}
         </div>
     );
