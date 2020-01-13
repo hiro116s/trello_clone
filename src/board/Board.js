@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateNewList, { createList } from './CraeteNewList';
-import Lists from './Lists';
+import CreateNewCard from './CreateNewCard';
+import Cards from './Cards';
 
 function Board(props) {
     const [lists, setLists] = useState(
@@ -14,23 +15,32 @@ function Board(props) {
         return `LISTS_${id}`;
     }
 
+    // TODO: Add board title
     return (
-        <div>
-            <CreateNewList
-                setLists={(newList) => setLists([...lists, newList])}
-            />
-            <Lists
-                lists={lists}
-                addNewCard={(index, newCard) => setLists([
-                    ...lists.slice(0, index),
-                    createList(
-                        lists[index].id,
-                        lists[index].name,
-                        [...lists[index].cards, newCard]
-                    ),
-                    ...lists.slice(index + 1)
-                ])}
-            />
+        <div className='Board-top'>
+            {lists.map((list, index) =>
+                <div>
+                    <div className='Board-List' key={index}>
+                        <p className='Board-List-name'>{list.name}</p>
+                        <hr />
+                        <CreateNewCard addNewCard={(newCard) => setLists([
+                            ...lists.slice(0, index),
+                            createList(
+                                lists[index].id,
+                                lists[index].name,
+                                [...lists[index].cards, newCard]
+                            ),
+                            ...lists.slice(index + 1)
+                        ])} />
+                        <Cards cards={list.cards} />
+                    </div>
+                </div>
+            )}
+            <div>
+                <CreateNewList
+                    setLists={(newList) => setLists([...lists, newList])}
+                />
+            </div>
         </div>
     );
 }

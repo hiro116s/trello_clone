@@ -5,7 +5,7 @@ import BoardLink from './BoardLink';
 
 function Home(props) {
     return (
-        <div className='Home'>
+        <div className='Home-top'>
             <div>
                 <BoardCreate
                     onBoardAdded={props.onBoardAdded}
@@ -13,7 +13,7 @@ function Home(props) {
                 />
             </div>
             {props.boardList.map((board, index) =>
-                <BoardLink board={board} />
+                <BoardLink key={index} board={board} />
             )}
         </div>
     );

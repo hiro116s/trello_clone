@@ -24,15 +24,15 @@ function BoardCreate(props) {
   }
 
   return (
-    <div className="CreateBoard">
-      <div className="CreateBoard-button" onClick={() => setIsFocused(true)}>
+    <div className="Home-CreateBoard">
+      <div className="Home-CreateBoard-button" onClick={() => setIsFocused(true)}>
         <h3>Create board</h3>
       </div>
-      {isFocused && <form onSubmit={handleSubmit} onReset={() => clearState()} className="CreateBoard-form">
+      {isFocused && <form onSubmit={handleSubmit} onReset={() => clearState()} className="Home-CreateBoard-form">
         <label>
           What shall we call the board? <br />
-          <input type="text" className='CreateBoard-input' name='board_name' value={boardName} onChange={(e) => setBoardName(e.target.value)} />
-          <p className='CreateBoard-error' aria-live='polite'>
+          <input type="text" className='Home-CreateBoard-input' name='board_name' value={boardName} onChange={(e) => setBoardName(e.target.value)} />
+          <p className='Home-CreateBoard-error' aria-live='polite'>
             {isInvalidInput && 'Oops! Looks like you forgot the name!'}
           </p>
         </label>

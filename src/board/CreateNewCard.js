@@ -11,9 +11,8 @@ function CreateNewCard(props) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name='card_name' value={cardName} onChange={(e) => setCardName(e.target.value)} />
-                <input type="submit" value="Submit"></input>
+            <form className='Board-CreateCard' onSubmit={handleSubmit}>
+                <input type="text" name='card_name' className='Board-CreateCard-input' value={cardName} onChange={(e) => setCardName(e.target.value)} />
             </form>
         </div>
     )
