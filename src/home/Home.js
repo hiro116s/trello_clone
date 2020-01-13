@@ -5,7 +5,7 @@ import BoardLink from './BoardLink';
 
 function Home(props) {
     return (
-        <div className='Home'>
+        <div className='Home-top'>
             <div>
                 <BoardCreate
                     onBoardAdded={props.onBoardAdded}

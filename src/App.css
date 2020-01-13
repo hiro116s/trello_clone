@@ -19,12 +19,12 @@
   display: inline-block;
 }
 
-.Home {
+.Home-top {
   display: flex;
   flex-wrap: wrap;
 }
 
-.CreateBoard {
+.Home-CreateBoard {
   width: 350px;
   color: white;
   -webkit-text-stroke: 0.5px green;
@@ -33,29 +33,29 @@
   margin: 10px 20px 10px 20px;
 }
 
-.CreateBoard-button {
+.Home-CreateBoard-button {
   cursor: pointer;
   padding: 20px 40px;
   font-size: 20px;
 }
 
-.CreateBoard-form {
+.Home-CreateBoard-form {
   padding: 30px 20px 40px 20px;
   border-top: thin solid white;
 }
 
-.CreateBoard-input {
+.Home-CreateBoard-input {
   margin: 10px 10px 0px 10px;
   padding: 10px;
 }
 
-.CreateBoard-error {
+.Home-CreateBoard-error {
   font-size: 15px;
   color: black;
   -webkit-text-stroke: 0px white;
 }
 
-.Board {
+.Home-Board {
   width: 350px;
   color: black;
   background-color: white;
@@ -67,7 +67,7 @@
   word-break: break-all;
 }
 
-.Board-link {
+.Home-Board-link {
   display: inline-block;
   margin: 10px 20px 10px 20px;
 }
