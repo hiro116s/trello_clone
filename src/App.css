@@ -72,7 +72,18 @@
   margin: 10px 20px 10px 20px;
 }
 
-.Board-top {
+.Board-top h1 {
+  width: 350px;
+  color: white;
+  -webkit-text-stroke: 0.5px green;
+  background-color: lightgreen;
+  border-radius: 10px;
+  padding: 15px 10px;
+  word-break: break-all;
+  margin: 10px 20px 10px 20px;
+}
+
+.Board-contents {
   display: flex;
   flex-wrap: wrap;
 }
