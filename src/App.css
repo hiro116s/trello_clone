@@ -85,7 +85,6 @@
 
 .Board-contents {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .Board-CreateLists {
