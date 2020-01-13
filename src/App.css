@@ -45,8 +45,14 @@
 }
 
 .CreateBoard-input {
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
   padding: 10px;
+}
+
+.CreateBoard-error {
+  font-size: 15px;
+  color: black;
+  -webkit-text-stroke: 0px white;
 }
 
 .Board {
