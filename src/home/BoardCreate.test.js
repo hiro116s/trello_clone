@@ -10,9 +10,9 @@ test('renders BoardCreate', () => {
         currentCounter={0}
         onBoardAdded={onBoardAdded}
     />);
-    expect(wrapper.find('div').text()).toEqual("Create board");
-    wrapper.find('div').simulate('click');
-    wrapper.find('input').at(0).simulate('change', { target: { name: 'board_name', value: 'board1'}});
+    expect(wrapper.find('h3').text()).toEqual("Create board");
+    wrapper.find('div.CreateBoard-button').simulate('click');
+    wrapper.find('input').at(0).simulate('change', { target: { name: 'board_name', value: 'board1' } });
     wrapper.find('input').at(1).simulate('submit');
     expect(wrapper.contains('form')).toBe(false);
     expect(onBoardAdded).toHaveProperty('callCount', 1);
