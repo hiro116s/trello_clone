@@ -3,12 +3,18 @@ import React, { useState } from 'react';
 function CreateNewList(props) {
     const [listName, setListName] = useState("");
     const [isFocused, setIsFocused] = useState(false);
+    const [isInvalidInput, setIsInvalidInput] = useState(false);
     const [counter, setCounter] = useState(0);
 
     function handleSubmit(event) {
-        props.setLists(createList(counter, listName, []));
-        setCounter(counter + 1);
-        setListName("");
+        if (listName === "") {
+            setIsInvalidInput(true);
+        } else {
+            props.setLists(createList(counter, listName, []));
+            setCounter(counter + 1);
+            setListName("");
+            setIsInvalidInput(false);
+        }
         event.preventDefault();
     }
 
@@ -20,6 +26,9 @@ function CreateNewList(props) {
             </div>}
             {isFocused && <form className='Board-CreateLists-form' onSubmit={handleSubmit}>
                 <input type="text" name='list_name' value={listName} autoFocus onChange={(e) => setListName(e.target.value)} />
+                <p className='Board-CreateLists-error' aria-live='polite'>
+                    {isInvalidInput && 'give me a name!'}
+                </p>
             </form>}
         </div>
     );

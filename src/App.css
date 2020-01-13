@@ -108,6 +108,12 @@
   border-top: thin solid white;
 }
 
+.Board-CreateLists-error {
+  font-size: 15px;
+  color: white;
+  -webkit-text-stroke: 0px white;
+}
+
 .Board-List {
   width: 350px;
   color: black;
