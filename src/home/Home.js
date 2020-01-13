@@ -13,7 +13,7 @@ function Home(props) {
                 />
             </div>
             {props.boardList.map((board, index) =>
-                <BoardLink board={board} />
+                <BoardLink key={index} board={board} />
             )}
         </div>
     );
