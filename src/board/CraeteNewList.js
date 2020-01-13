@@ -8,7 +8,7 @@ function CreateNewList(props) {
     function handleSubmit(event) {
         props.setLists(createList(counter, listName, []));
         setCounter(counter + 1);
-        setIsFocused(false);
+        setListName("");
         event.preventDefault();
     }
 
@@ -19,8 +19,7 @@ function CreateNewList(props) {
                     Add a list...
             </div>}
             {isFocused && <form className='Board-CreateLists-form' onSubmit={handleSubmit}>
-                <input type="text" name='list_name' value={listName} onChange={(e) => setListName(e.target.value)} />
-                <input type="submit" value="Submit"></input>
+                <input type="text" name='list_name' value={listName} autoFocus onChange={(e) => setListName(e.target.value)} />
             </form>}
         </div>
     );

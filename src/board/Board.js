@@ -18,7 +18,6 @@ function Board(props) {
         return `LISTS_${id}`;
     }
 
-    // TODO: Add board title
     return (
         <div className='Board-top' >
             <h1>{boardTitle}</h1>
