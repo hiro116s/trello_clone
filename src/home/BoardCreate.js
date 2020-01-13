@@ -20,7 +20,7 @@ function BoardCreate(props) {
   return (
     <div className="CreateBoard">
       <div className="CreateBoard-button" onClick={() => setIsFocused(!isFocused)}>
-        Create board
+        <h3>Create board</h3>
       </div>
       {isFocused && <form onSubmit={handleSubmit} onReset={() => setIsFocused(!isFocused)} className="CreateBoard-form">
         <label>

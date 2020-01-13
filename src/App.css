@@ -25,17 +25,17 @@
 }
 
 .CreateBoard {
+  width: 350px;
   color: white;
   -webkit-text-stroke: 0.5px green;
   background-color: lightgreen;
-  display: inline-block;
   border-radius: 10px;
-  margin-left: 20px;
+  margin: 10px 20px 10px 20px;
 }
 
 .CreateBoard-button {
   cursor: pointer;
-  padding: 4px 40px;
+  padding: 20px 40px;
   font-size: 20px;
 }
 
@@ -50,12 +50,18 @@
 }
 
 .Board {
+  width: 350px;
   color: black;
   background-color: white;
   border: solid 1px black;
   display: inline-block;
   border-radius: 10px;
-  padding: 4px 40px;
+  padding: 15px 40px;
   font-size: 20px;
-  margin-left: 20px;
+  word-break: break-all;
+}
+
+.Board-link {
+  display: inline-block;
+  margin: 10px 20px 10px 20px;
 }
