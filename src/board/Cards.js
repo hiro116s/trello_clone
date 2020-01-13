@@ -3,10 +3,10 @@ import React from 'react';
 function Cards(props) {
     return (
         <div>
-            <ul>
+            <ul className='Board-Cards'>
                 {props.cards.map((card, index) =>
-                    <li key={index}>
-                        {card}
+                    <li className='Board-Card' key={index}>
+                        <span>{card}</span>
                     </li>
                 )}
             </ul>
