@@ -11,7 +11,7 @@ test('renders BoardCreate', () => {
         onBoardAdded={onBoardAdded}
     />);
     expect(wrapper.find('h3').text()).toEqual("Create board");
-    wrapper.find('div.CreateBoard-button').simulate('click');
+    wrapper.find('div.Home-CreateBoard-button').simulate('click');
     wrapper.find('input').at(0).simulate('change', { target: { name: 'board_name', value: 'board1' } });
     wrapper.find('input').at(1).simulate('submit');
     expect(wrapper.contains('form')).toBe(false);
