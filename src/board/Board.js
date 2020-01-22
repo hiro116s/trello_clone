@@ -36,51 +36,25 @@ function Board(props) {
         const dDroppable = parseInt(result.destination.droppableId.split("-").pop())
 
         if (sDroppable !== dDroppable) {
-            const sList = lists[sDroppable];
-            const dList = lists[dDroppable];
-            const newSourceList = createList(sList.id, sList.name,
-                [
-                    ...sList.cards.slice(0, sIdx),
-                    ...sList.cards.slice(sIdx + 1)
-                ]);
-            const newDestList = createList(dList.id, dList.name,
-                [
-                    ...dList.cards.slice(0, dIdx),
-                    sList.cards[sIdx],
-                    ...dList.cards.slice(dIdx)
-                ]);
-            const minIdx = Math.min(sDroppable, dDroppable);
-            const maxIdx = Math.max(sDroppable, dDroppable);
-            return [
-                ...lists.slice(0, minIdx),
-                sDroppable < dDroppable ? newSourceList : newDestList,
-                ...lists.slice(minIdx + 1, maxIdx),
-                sDroppable < dDroppable ? newDestList : newSourceList,
-                ...lists.slice(maxIdx + 1)
-            ];
+            const newSourceCards = Array.from(lists[sDroppable].cards);
+            const newDestCards = Array.from(lists[dDroppable].cards);
+            const [removed] = newSourceCards.splice(sIdx, 1);
+            newDestCards.splice(dIdx, 0, removed);
+            const newLists = Array.from(lists);
+            newLists.splice(sDroppable, 1, createList(lists[sDroppable].id, lists[sDroppable].name, newSourceCards));
+            newLists.splice(dDroppable, 1, createList(lists[dDroppable].id, lists[dDroppable].name, newDestCards));
+            return newLists;
         } else {
             if (sIdx === dIdx) {
                 return lists;
             }
 
-            const list = lists[sDroppable];
-            const newCards = sIdx < dIdx ? [
-                ...list.cards.slice(0, sIdx),
-                ...list.cards.slice(sIdx + 1, dIdx + 1),
-                list.cards[sIdx],
-                ...list.cards.slice(dIdx + 1)
-            ] : sIdx > dIdx ? [
-                ...list.cards.slice(0, dIdx),
-                list.cards[sIdx],
-                ...list.cards.slice(dIdx, sIdx),
-                ...list.cards.slice(sIdx + 1),
-            ] : [];
-
-            return [
-                ...lists.slice(0, sDroppable),
-                createList(list.id, list.name, newCards),
-                ...lists.slice(sDroppable + 1)
-            ];
+            const newCards = Array.from(lists[sDroppable].cards);
+            const [removed] = newCards.splice(sIdx, 1);
+            newCards.splice(dIdx, 0, removed);
+            const newLists = Array.from(lists);
+            newLists.splice(sDroppable, 1, createList(lists[sDroppable].id, lists[sDroppable].name, newCards));
+            return newLists;
         }
     }
 
