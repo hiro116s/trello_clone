@@ -21,7 +21,7 @@ function App() {
       </header>
       <Switch>
         <Route path="/b/:id">
-          <Board findTitle={id => boardList.find(b => b.id == id).name} />
+          <Board findTitle={id => boardList.find(b => b.id.toString() === id).name} />
         </Route>
         <Route path="/">
           <Home
