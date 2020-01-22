@@ -1,16 +1,29 @@
 import React from 'react';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 function Cards(props) {
     return (
-        <div>
-            <ul className='Board-Cards'>
-                {props.cards.map((card, index) =>
-                    <li className='Board-Card' key={index}>
-                        <span>{card}</span>
-                    </li>
-                )}
-            </ul>
-        </div>
+        <Droppable droppableId={`droppable-${props.listId}`}>
+            {(provided, snapshot) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                    {props.cards.map((card, index) =>
+                        <Draggable key={card.id} draggableId={`card-${card.id}`} index={index}>
+                            {(provided, snapshot) => (
+                                <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className='Board-Card'
+                                >
+                                    <span>{card.name}</span>
+                                </div>
+                            )}
+                        </Draggable>
+                    )}
+                    {provided.placeholder}
+                </div>
+            )}
+        </Droppable>
     );
 }
 
