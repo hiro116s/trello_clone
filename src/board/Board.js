@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useFirebase from '../hook/useFirebase';
 import useBoardTitle from '../hook/useBoardTitle';
 import CreateNewList, { createList } from './CraeteNewList';
@@ -7,25 +7,26 @@ import Cards from './Cards';
 import { useParams } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 import useCounter from '../hook/useCounter';
+import { COLLECTION_LIST, FIREBASE_TOP_FIELD } from '../const';
 
 function Board(props) {
     const { id } = useParams();
     const boardTitle = useBoardTitle(props.boardList, id);
     const [lists, setLists, isInitialized] = useFirebase(
         props.db,
-        "list",
+        COLLECTION_LIST,
         toListsDataStorageKey(id)
     );
 
     const counter = useCounter(lists, () => lists
-        .map(list => list.cards.map(card => card.id).reduce((id1, id2) => Math.max(id1, id2), 0))
-        .reduce((id1, id2) => Math.max(id1, id2), 0) + 1)
+        .map(list => list.cards.map(card => card.id).reduce((id1, id2) => Math.max(id1, id2) + 1, 0))
+        .reduce((id1, id2) => Math.max(id1, id2), 0))
 
     useEffect(() => {
         if (isInitialized.current) {
-            props.db.collection("list").doc(toListsDataStorageKey(id)).set({ "data": lists });
+            props.db.collection(COLLECTION_LIST).doc(toListsDataStorageKey(id)).set({ [FIREBASE_TOP_FIELD]: lists });
         }
-    }, [lists, props.db, isInitialized]);
+    }, [lists, props.db, id, isInitialized]);
 
     function toListsDataStorageKey(id) {
         return `LISTS_${id}`;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useFirebase from './hook/useFirebase';
-import { BOARD_DATA_STORAGE_KEY } from './const';
+import { BOARD_DATA_STORAGE_KEY, COLLECTION_BOARD, FIREBASE_TOP_FIELD } from './const';
 import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './home/Home';
@@ -8,12 +8,12 @@ import logo from './logo.svg';
 import Board from './board/Board';
 
 function App(props) {
-  const [boardList, setBoardList, isInitialized] = useFirebase(props.db, "board", BOARD_DATA_STORAGE_KEY);
+  const [boardList, setBoardList, isInitialized] = useFirebase(props.db, COLLECTION_BOARD, BOARD_DATA_STORAGE_KEY);
 
   useEffect(() => {
     if (isInitialized.current) {
       // TODO: After fetching board list, always the store in firstore is updated.  It's unnecessary update.
-      props.db.collection("board").doc(BOARD_DATA_STORAGE_KEY).set({ "data": boardList });
+      props.db.collection(COLLECTION_BOARD).doc(BOARD_DATA_STORAGE_KEY).set({ [FIREBASE_TOP_FIELD]: boardList });
     }
   }, [boardList, props.db, isInitialized]);
 

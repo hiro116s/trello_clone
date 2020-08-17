@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { BOARD_DATA_STORAGE_KEY } from '../const';
+import { FIREBASE_TOP_FIELD } from '../const';
 
 function useFirebase(db, collectionName, docName) {
     const isInitialized = useRef(false);
@@ -14,7 +14,7 @@ function useFirebase(db, collectionName, docName) {
                 console.log(doc, doc.data());
                 if (!ignore) {
                     if (doc.data() !== undefined) {
-                        setData(doc.data().data);
+                        setData(doc.data()[FIREBASE_TOP_FIELD]);
                     }
                     isInitialized.current = true;
                 }
@@ -22,7 +22,7 @@ function useFirebase(db, collectionName, docName) {
             fetchData();
         }
         return () => { ignore = true; }
-    }, [data, db]);
+    }, [data, db, collectionName, docName]);
 
     return [data, setData, isInitialized];
 }

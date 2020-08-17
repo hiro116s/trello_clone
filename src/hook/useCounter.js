@@ -6,7 +6,7 @@ function useCounter(obj, getCounter) {
     useEffect(() => {
         const currentCounter = getCounter();
         setCounter(currentCounter);
-    }, [obj]);
+    }, [obj, getCounter]);
 
     return counter;
 }
