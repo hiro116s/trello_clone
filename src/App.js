@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import useFirebase from './hook/useFirebase';
+import { BOARD_DATA_STORAGE_KEY } from './const';
 import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './home/Home';
 import logo from './logo.svg';
 import Board from './board/Board';
 
-function App() {
-  const BOARD_DATA_STORAGE_KEY = "board_data";
-  const [boardList, setBoardList] = useState(JSON.parse(localStorage.getItem(BOARD_DATA_STORAGE_KEY)) || []);
+function App(props) {
+  const [boardList, setBoardList, isInitialized] = useFirebase(props.db, "board", BOARD_DATA_STORAGE_KEY);
 
   useEffect(() => {
-    localStorage.setItem(BOARD_DATA_STORAGE_KEY, JSON.stringify(boardList));
-  });
+    if (isInitialized.current) {
+      // TODO: After fetching board list, always the store in firstore is updated.  It's unnecessary update.
+      props.db.collection("board").doc(BOARD_DATA_STORAGE_KEY).set({ "data": boardList });
+    }
+  }, [boardList, props.db, isInitialized]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,7 +26,10 @@ function App() {
       </header>
       <Switch>
         <Route path="/b/:id">
-          <Board findTitle={id => boardList.find(b => b.id.toString() === id).name} />
+          <Board
+            boardList={boardList}
+            db={props.db}
+          />
         </Route>
         <Route path="/">
           <Home

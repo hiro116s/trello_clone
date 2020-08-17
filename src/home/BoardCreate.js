@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import useCounter from '../hook/useCounter';
 
 function BoardCreate(props) {
-  const [counter, setCounter] = useState(props.currentCounter);
+  const counter = useCounter(props.boardList, () => props.boardList.map(b => b.id).reduce((id1, id2) => Math.max(id1, id2) + 1, 0));
   const [isFocused, setIsFocused] = useState(false);
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const [boardName, setBoardName] = useState("");
@@ -17,7 +18,6 @@ function BoardCreate(props) {
       setIsInvalidInput(true);
     } else {
       props.onBoardAdded(createBoard(counter, boardName));
-      setCounter(counter + 1);
       clearState();
     }
     event.preventDefault();
