@@ -6,6 +6,7 @@ import CreateNewCard from './CreateNewCard';
 import Cards from './Cards';
 import { useParams } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
+import useCounter from '../hook/useCounter';
 
 function Board(props) {
     const { id } = useParams();
@@ -16,7 +17,7 @@ function Board(props) {
         toListsDataStorageKey(id)
     );
 
-    const [counter, setCounter] = useState(lists
+    const counter = useCounter(lists, () => lists
         .map(list => list.cards.map(card => card.id).reduce((id1, id2) => Math.max(id1, id2), 0))
         .reduce((id1, id2) => Math.max(id1, id2), 0) + 1)
 
@@ -93,7 +94,6 @@ function Board(props) {
                                         ),
                                         ...lists.slice(index + 1)
                                     ]);
-                                    setCounter(counter + 1);
                                 }} />
                                 <Cards listId={index} cards={list.cards} />
                             </div>
