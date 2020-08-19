@@ -11,7 +11,6 @@ function useFirebase(db, collectionName, docName) {
             // Reference: https://www.robinwieruch.de/react-hooks-fetch-data
             async function fetchData() {
                 const doc = await db.collection(collectionName).doc(docName).get();
-                console.log(doc, doc.data());
                 if (!ignore) {
                     if (doc.data() !== undefined) {
                         setData(doc.data()[FIREBASE_TOP_FIELD]);
